@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>カードパック開封</title>
+  <style>
+    body {
+      background: #222;
+      color: white;
+      text-align: center;
+      font-family: sans-serif;
+      padding-top: 50px;
+    }
+    .pack {
+      width: 200px;
+      height: 300px;
+      margin: auto;
+      background: linear-gradient(135deg, gold, orange);
+      border-radius: 10px;
+      box-shadow: 0 0 30px gold;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .pack:hover {
+      transform: scale(1.05);
+    }
+    .card {
+      display: none;
+      margin-top: 20px;
+      font-size: 24px;
+    }
+    .rare {
+      color: gold;
+      text-shadow: 0 0 10px gold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>カードパック開封！</h1>
+  <div class="pack" id="pack">🎁 パックを開ける</div>
+  <div class="card" id="card"></div>
+
+  <script>
+    const cards = [
+      "ピカチュウ",
+      "フシギダネ",
+      "ヒトカゲ",
+      "ゼニガメ",
+      "リザードン（レア）",
+      "ミュウツー（激レア）"
+    ];
+
+    document.getElementById('pack').addEventListener('click', () => {
+      const result = cards[Math.floor(Math.random() * cards.length)];
+      const cardEl = document.getElementById('card');
+      cardEl.textContent = `あなたの引いたカードは「${result}」！`;
+      cardEl.className = "card";
+      if (result.includes("レア")) {
+        cardEl.classList.add("rare");
+      }
+      cardEl.style.display = "block";
+    });
+  </script>
+
+</body>
+</html>

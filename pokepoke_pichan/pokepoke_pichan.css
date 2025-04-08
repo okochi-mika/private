@@ -1,0 +1,11 @@
+.card-img {
+    width: 150px;  /* 横幅を150pxに統一 */
+    height: 200px; /* 高さを200pxに統一 */
+    object-fit: cover; /* 画像が枠に収まるように切り抜かれる */
+    border-radius: 10px; /* 角を丸くする */
+    margin-top: 20px;
+    display: block; /* インライン要素の調整 */
+    margin-left: auto; /* 中央寄せ */
+    margin-right: auto; /* 中央寄せ */
+  }
+  

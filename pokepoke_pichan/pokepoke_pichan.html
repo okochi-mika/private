@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>カードパック開封</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      background: #222;
+      color: white;
+      text-align: center;
+      font-family: sans-serif;
+      padding-top: 50px;
+    }
+    .pack {
+      width: 200px;
+      height: 300px;
+      margin: auto;
+      background: linear-gradient(135deg, gold, orange);
+      border-radius: 10px;
+      box-shadow: 0 0 30px gold;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .pack:hover {
+      transform: scale(1.05);
+    }
+    .card {
+      display: none;
+      margin-top: 20px;
+      font-size: 24px;
+    }
+    .rare {
+      color: gold;
+      text-shadow: 0 0 10px gold;
+    }
+    .card-img {
+      width: 150px;  /* 横幅を150pxに統一 */
+      height: 200px; /* 高さを200pxに統一 */
+      object-fit: cover; /* 画像が枠に収まるように切り抜かれる */
+      border-radius: 10px; /* 角を丸くする */
+      display: block; /* インライン要素の調整 */
+      margin-left: auto; /* 中央寄せ */
+      margin-right: auto; /* 中央寄せ */
+    }
+  </style>
+</head>
+<body>
+
+  <h1>カードパック開封！</h1>
+  <div class="pack" id="pack">🎁 パックを開ける</div>
+  <div class="card" id="card"></div>
+
+  <script>
+    // 画像パスの配列
+    const cards = [
+      { name: "クワッス", image: "pokepoke_pichan.design/クワッスAR.jpg" },
+      { name: "ホゲータ", image: "pokepoke_pichan.design/ホゲータAR.jpg" },
+      { name: "ニャオハ", image: "pokepoke_pichan.design/ニャオハAR.jpg" },
+      { name: "パモ", image: "pokepoke_pichan.design/パモAR.jpg" },
+      { name: "ピカチュウ", image: "pokepoke_pichan.design/ピカチュウAR.jpg" }
+    ];
+
+    document.getElementById('pack').addEventListener('click', () => {
+      const result = cards[Math.floor(Math.random() * cards.length)];
+      const cardEl = document.getElementById('card');
+      
+      // 画像を表示
+      const imgElement = document.createElement('img');
+      imgElement.src = result.image;
+      imgElement.classList.add('card-img');
+      
+      // テキストを更新
+      cardEl.textContent = `あなたの引いたカードは「${result.name}」！`;
+      cardEl.className = "card";
+      
+      if (result.name.includes("レア")) {
+        cardEl.classList.add("rare");
+      }
+      
+      // 画像を追加
+      cardEl.appendChild(imgElement);
+      cardEl.style.display = "block";
+
+      // fadeIn効果を使ってカードを表示
+      $(cardEl).fadeIn(500); // 500msでフェードイン
+    });
+  </script>
+
+</body>
+</html>
